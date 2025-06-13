@@ -25,8 +25,7 @@ bot.on("message", async (ctx) => {
     const controller = new AbortController();
       await ctx.replyWithChatAction("upload_video");
       const { signal } = controller;
-      const url = new URL(ctx.message.text.replace("instagram.com/reels/","instagram.com/reel/"));
-      url.searchParams.set("utm_source","ig_web_copy_link");
+      const url = new URL(ctx.message.text);
       const ytdlp = spawn(
         "yt-dlp",
         [
