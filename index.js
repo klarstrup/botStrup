@@ -20,7 +20,8 @@ bot.catch((err) => {
 // Reply to any message with "Hi there!".
 bot.on("message", async (ctx) => {
   console.log(`Got message ${ctx.msg.message_id}`);
-  if (false && ctx.chat.type === "private" && ctx.message.text?.trim()) {
+
+  if (ctx.chat.type === "private" && ctx.message.text?.trim()) {
     let stdErrText;
     try {
       const controller = new AbortController();
