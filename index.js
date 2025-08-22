@@ -1,6 +1,7 @@
-const { Bot, InputFile, InlineKeyboard,GrammyError,HttpError } = require("grammy");
+const { Bot, InputFile, GrammyError, HttpError } = require("grammy");
 const { spawn } = require("node:child_process");
-require('dotenv').config()
+require("dotenv").config();
+
 const bot = new Bot(process.env.TG_BOT_TOKEN); // <-- put your bot token here (https://t.me/BotFather)
 
 bot.catch((err) => {
@@ -19,10 +20,10 @@ bot.catch((err) => {
 // Reply to any message with "Hi there!".
 bot.on("message", async (ctx) => {
   console.log(`Got message ${ctx.msg.message_id}`);
-  if (ctx.chat.type === "private" && ctx.message.text.trim()) {
+  if (ctx.chat.type === "private" && ctx.message.text?.trim()) {
     let stdErrText;
     try {
-    const controller = new AbortController();
+      const controller = new AbortController();
       await ctx.replyWithChatAction("upload_video");
       const { signal } = controller;
       const url = new URL(ctx.message.text);
@@ -60,10 +61,10 @@ bot.on("message", async (ctx) => {
         reply_to_message_id: ctx.message.message_id,
       });
     } catch (err) {
-      ctx.reply(String(stdErrText));
-      ctx.reply(String(err));
+      ctx.reply(String(stdErrText).slice(0, 4000));
+      ctx.reply(String(err).slice(0, 4000));
 
-     // throw err;
+      // throw err;
     }
   }
   console.log(`Dealt with message ${ctx.msg.message_id}`);
