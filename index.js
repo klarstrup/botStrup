@@ -61,8 +61,8 @@ bot.on("message", async (ctx) => {
         reply_to_message_id: ctx.message.message_id,
       });
     } catch (err) {
-      ctx.reply(String(stdErrText).slice(0, 4000));
-      ctx.reply(String(err).slice(0, 4000));
+      ctx.reply(String(stdErrText).slice(0, 1000));
+      ctx.reply(String(err).slice(0, 1000));
 
       // throw err;
     }
