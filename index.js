@@ -31,7 +31,7 @@ bot.on("message", async (ctx) => {
       const ytdlp = spawn(
         "yt-dlp",
         [
-          "-f",
+          "-t",
           "mp4",
           "--playlist-random",
           "--no-warnings",
